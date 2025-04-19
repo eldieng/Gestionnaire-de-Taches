@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Tâches</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Gestionnaire de Tâches</h1>
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+                <button id="notifToggle" class="notif-toggle">🔔</button>
+            </div>
+        </header>
+
+        <!-- Barre de recherche -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher une tâche...">
+            <select id="sortCriteria">
+                <option value="date">Trier par date</option>
+                <option value="priority">Trier par priorité</option>
+                <option value="title">Trier par titre</option>
+                <option value="category">Trier par catégorie</option>
+            </select>
+        </div>
+
+        <div class="task-form">
+            <h2>Nouvelle Tâche</h2>
+            <form id="taskForm">
+                <input type="text" id="taskTitle" placeholder="Titre de la tâche" required>
+                <textarea id="taskDescription" placeholder="Description" required></textarea>
+                <div class="form-row">
+                    <select id="taskPriority">
+                        <option value="basse">Priorité Basse</option>
+                        <option value="normale" selected>Priorité Normale</option>
+                        <option value="haute">Priorité Haute</option>
+                    </select>
+                    <select id="taskCategory">
+                        <option value="personnel">Personnel</option>
+                        <option value="travail">Travail</option>
+                        <option value="courses">Courses</option>
+                        <option value="sante">Santé</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="datetime-local" id="taskDueDate" required>
+                    <div class="reminder-option">
+                        <input type="checkbox" id="taskReminder">
+                        <label for="taskReminder">Activer les rappels</label>
+                    </div>
+                </div>
+                <button type="submit">Ajouter la tâche</button>
+            </form>
+        </div>
+
+        <div class="tasks-container">
+            <div class="tasks-header">
+                <h2>Mes Tâches</h2>
+                <div class="category-filters">
+                    <button class="category-btn active" data-category="all">Toutes</button>
+                    <button class="category-btn" data-category="personnel">Personnel</button>
+                    <button class="category-btn" data-category="travail">Travail</button>
+                    <button class="category-btn" data-category="courses">Courses</button>
+                    <button class="category-btn" data-category="sante">Santé</button>
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Toutes</button>
+                    <button class="filter-btn" data-filter="active">En cours</button>
+                    <button class="filter-btn" data-filter="completed">Terminées</button>
+                </div>
+            </div>
+            <div id="tasksList" class="tasks-list">
+                <!-- Les tâches seront ajoutées ici dynamiquement -->
+            </div>
+        </div>
+
+        <div class="statistics" id="statistics">
+            <!-- Les statistiques seront ajoutées ici dynamiquement -->
+        </div>
+    </div>
+
+    <!-- Modal de modification -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Modifier la tâche</h2>
+            <form id="editTaskForm">
+                <input type="hidden" id="editTaskId">
+                <input type="text" id="editTaskTitle" placeholder="Titre de la tâche" required>
+                <textarea id="editTaskDescription" placeholder="Description" required></textarea>
+                <div class="form-row">
+                    <select id="editTaskPriority">
+                        <option value="basse">Priorité Basse</option>
+                        <option value="normale">Priorité Normale</option>
+                        <option value="haute">Priorité Haute</option>
+                    </select>
+                    <select id="editTaskCategory">
+                        <option value="personnel">Personnel</option>
+                        <option value="travail">Travail</option>
+                        <option value="courses">Courses</option>
+                        <option value="sante">Santé</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="datetime-local" id="editTaskDueDate" required>
+                    <div class="reminder-option">
+                        <input type="checkbox" id="editTaskReminder">
+                        <label for="editTaskReminder">Activer les rappels</label>
+                    </div>
+                </div>
+                <button type="submit">Enregistrer les modifications</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notifications" class="notifications">
+        <!-- Les notifications seront ajoutées ici dynamiquement -->
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

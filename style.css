@@ -1,0 +1,700 @@
+/* Variables pour le thème */
+:root[data-theme="light"] {
+    --bg-color: #f8fafc;
+    --text-color: #334155;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-color: rgba(51, 65, 85, 0.1);
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-bg: #f1f5f9;
+    --input-bg: #ffffff;
+    --input-border: #cbd5e1;
+    --hover-bg: #f8fafc;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --text-muted: #64748b;
+    --completed-bg: #f1f5f9;
+}
+
+:root[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --border-color: #334155;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --primary-color: #6366f1;
+    --primary-hover: #818cf8;
+    --secondary-bg: #1e293b;
+    --input-bg: #1e293b;
+    --input-border: #475569;
+    --hover-bg: #334155;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --error-color: #dc2626;
+    --text-muted: #94a3b8;
+    --completed-bg: #1e293b;
+}
+
+/* Style général avec transitions */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.theme-toggle, .notif-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle:hover, .notif-toggle:hover {
+    background-color: var(--border-color);
+}
+
+h1 {
+    color: var(--text-color);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* Barre de recherche */
+.search-bar {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar input, .search-bar select {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.search-bar input {
+    flex: 1;
+}
+
+/* Formulaire */
+.task-form {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row > * {
+    flex: 1;
+}
+
+.reminder-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+button:active::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Liste des tâches */
+.tasks-container {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.tasks-header {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.category-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    animation: fadeIn 0.3s ease-in;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-category {
+    font-size: 0.8em;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 10px;
+    background-color: var(--bg-color);
+}
+
+/* Notifications */
+.notifications {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    background: var(--card-bg);
+    color: var(--text-color);
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.notification.warning {
+    border-left: 4px solid var(--warning-color);
+}
+
+.notification.error {
+    border-left: 4px solid var(--error-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .tasks-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filters, .category-filters {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .header-controls {
+        flex-direction: column;
+    }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--card-bg);
+    margin: 15% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    animation: slideIn 0.3s ease-out;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    opacity: 0.8;
+}
+
+/* Ajout du bouton d'édition */
+.edit-btn {
+    background-color: var(--primary-color);
+}
+
+.edit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Style pour le formulaire d'édition */
+#editTaskForm {
+    margin-top: 20px;
+}
+
+/* Style pour les statistiques */
+.statistics {
+    margin-top: 30px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.stat-item {
+    background: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    color: var(--text-color);
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Style pour les tâches */
+.task-info {
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.task-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+.task-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.task-due-date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-due-date.urgent {
+    color: var(--error-color);
+    font-weight: 500;
+}
+
+.task-description {
+    color: var(--text-color);
+    opacity: 0.9;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.task-priority {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.priority-haute {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.priority-normale {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.priority-basse {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.task-actions button {
+    padding: 5px 10px;
+    font-size: 0.9em;
+}
+
+.delete-btn {
+    background-color: var(--error-color);
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+}
+
+.complete-btn {
+    background-color: var(--success-color);
+}
+
+.complete-btn:hover {
+    background-color: #059669;
+}
+
+.task-item.completed {
+    background-color: var(--completed-bg);
+    opacity: 0.8;
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+}
+
+/* Style pour le toggle des notifications */
+.notif-toggle.active {
+    color: var(--primary-color);
+}
+
+/* Animation pour les notifications */
+.notification {
+    transform-origin: right;
+}
+
+.notification.show {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.notification.hide {
+    animation: slideOut 0.3s ease-out forwards;
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Style pour les catégories */
+.task-category[data-category="personnel"] {
+    background-color: #c7d2fe;
+    color: #3730a3;
+}
+
+.task-category[data-category="travail"] {
+    background-color: #bfdbfe;
+    color: #1e40af;
+}
+
+.task-category[data-category="courses"] {
+    background-color: #fce7f3;
+    color: #9d174d;
+}
+
+.task-category[data-category="sante"] {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.task-category[data-category="autre"] {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+/* Améliorations pour les cartes */
+.task-form:hover, .tasks-container:hover, .statistics:hover {
+    box-shadow: 0 8px 16px var(--shadow-color);
+}
+
+/* Style amélioré pour les boutons */
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+button:active::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Amélioration du contraste en mode sombre */
+:root[data-theme="dark"] .task-description {
+    color: var(--text-muted);
+}
+
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder {
+    color: var(--text-muted);
+}
+
+:root[data-theme="dark"] .task-meta {
+    color: var(--text-muted);
+}
+
+/* Animation de transition de thème */
+.theme-transition {
+    animation: themeChange 0.3s ease;
+}
+
+@keyframes themeChange {
+    0% {
+        opacity: 0.8;
+        transform: scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Style amélioré pour le toggle de thème */
+.theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--secondary-bg);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: var(--hover-bg);
+}
+
+:root[data-theme="light"] .theme-toggle {
+    background: #fef3c7;
+    color: #d97706;
+    border-color: #fcd34d;
+}
+
+:root[data-theme="dark"] .theme-toggle {
+    background: #312e81;
+    color: #818cf8;
+    border-color: #4f46e5;
+} 
