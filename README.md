@@ -122,6 +122,6 @@ Ce projet est sous licence MIT - voir le fichier [LICENSE.md](LICENSE.md) pour p
 
 ## 📞 Contact
 
-Votre Nom - [@votre_twitter](https://twitter.com/votre_twitter) - email@example.com
+El Hadji Dieng  - el.elhadji.dieng@gmail.com
 
-Lien du projet : [https://github.com/votre-username/gestionnaire-taches](https://github.com/votre-username/gestionnaire-taches) 
+Lien du projet : [https://github.com/votre-username/gestionnaire-taches](https://github.com/eldieng/gestionnaire-de-taches) 
