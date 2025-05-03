@@ -2,6 +2,10 @@
 
 Une application web moderne et intuitive pour gérer vos tâches quotidiennes, développée avec HTML, CSS et JavaScript vanilla.
 
+Développeur : El Hadji Dieng
+Email : elhadji.dieng@gmail.com
+Téléphone : +221 77 454 86 61
+
 ## ✨ Fonctionnalités
 
 - 📋 Gestion complète des tâches (CRUD)
